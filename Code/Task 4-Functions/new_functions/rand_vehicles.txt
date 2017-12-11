@@ -1,0 +1,41 @@
+char *rand_vehicle()//function to return random vehicle type
+    {
+       int x;char *ptr;
+       char arr[4]={"Bus","Car","Bike","Truck"};
+        x=rand()%4;
+        ptr=(char *)malloc(sizeof(char)*strlen(arr[x]+1));
+        strcpy(ptr,arr[x]);
+        return ptr;
+    }
+    
+    
+    void vehicle_move(vehicle_t *arr[],int size)
+    {
+    int f=0,c=0,r;
+    r=size-1;
+   for(int i=f;i<=r;i++)//loop from front to rear
+   {
+        while(arr[i]==NULL)//
+        {
+            i++;
+        }
+        arr[i-1]=arr[i];
+        arr[i]=NULL;
+    }
+    
+    int connection(vehicle *ptr,tsl_t *per)
+    {
+        
+        
+        
+        
+        
+        
+    |
+    
+    
+    
+    
+    
+    
+    

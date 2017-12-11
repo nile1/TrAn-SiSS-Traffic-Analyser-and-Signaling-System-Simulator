@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<string.h>
+#ifndef __USER_H__
+
+    #define __USER_H__
+
+    #define MAX_SIZE 15
+    typedef struct user
+    {
+        char name[MAX_SIZE];
+        char password[MAX_SIZE];
+        char username[MAX_SIZE];
+        char type[MAX_SIZE];
+    }user_t;
+
+
+    /* Function:- Set user entry fields */
+    void set_user(user_t *u,char name[],char username[],char password[],char type[])
+    {
+        strcpy(u->name,name);
+        strcpy(u->password,password);
+        strcpy(u->username,username);
+        strcpy(u->type,type);
+    }
+
+    /* Function:- Copy user details in another variable */
+    void copy_user(user_t *u,user_t *u2)
+    {
+        strcpy(u->name,u2->name);
+        strcpy(u->password,u2->password);
+        strcpy(u->username,u2->username);
+        strcpy(u->type,u2->type);
+    }
+
+
+    /* Function:- Check user credentials */
+    int check_credentials(user_t *u)
+    {
+        FILE *fp;                                   //File pointer
+        user_t temp;
+        char filename[]="user_data.dat";
+        fp=fopen(filename,"rb");
+        while(!feof(fp))
+        {
+            fread(&temp,sizeof(user_t),1,fp);        //Reading a file in binary format
+            if((strcmp(u->username,temp.username)==0)&&(strcmp(u->password,temp.password)==0))
+            {
+                copy_user(u,&temp);
+                return 1;
+            }
+        }
+        return 0;
+
+    }
+
+    /* Function:- Save user credentials */
+    void save_user(user_t *u)
+    {
+        FILE *fp;
+        char filename[]="user_data.dat";
+        printf("%s",filename);
+        fp=fopen(filename,"ab+");
+        fwrite(u,sizeof(user_t),1,fp);
+    }
+
+    /* Function:- Login for user */
+    int login(user_t *u)
+    {
+        int ret,temp;
+        printf("\nEnter username");
+        scanf("%s",u->username);
+        printf("\nEnter password");
+        scanf("%s",u->password);
+        temp = check_credentials(u);
+        if(temp==0)
+            return 0;
+
+        return 1;
+    }
+
+    /*Function:- User */
+    void add_new_user()
+    {
+        user_t u;
+        printf("\nEnter name");
+        gets(u.name);
+        printf("\nEnter password");
+        scanf("%s",u.password);
+        printf("\nEnter username");
+        scanf("%s",u.username);
+        printf("\nEnter type");
+        scanf("%s",u.type);
+        save_user(&u);
+    }
+
+
+#endif

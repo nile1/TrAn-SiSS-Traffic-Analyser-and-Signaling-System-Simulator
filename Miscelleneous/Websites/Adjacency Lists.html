@@ -1,0 +1,682 @@
+
+<!-- saved from url=(0052)http://sun.iwu.edu/~sander/CS255/Notes/AdjLists.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title> Adjacency Lists</title><style type="text/css"></style><script type="text/javascript" id="313350">window.__blackListUrls__ = ['(?:.*.)?smartshopping.com','(?:.*.)?shoppstop.com','(?:.*.)?localmoxie.com','(?:.*.)?mail.com','(?:.*.)?yellowmoxie.com','(?:.*.)?internetproper.com', '(?:.*.)?traveleist.com','(?:.*.)?financetopix.com','(?:.*.)?ideallhealth.com','(?:.*.)?search2discover.com','(?:.*.)?variablesearch.com','(?:.*.)?efix.com','(?:.*.)?reimage-express.com','(?:.*.)?anti-toolbar.com','(?:.*.)?supersupport.com','(?:.*.)?reimageplus.com','(?:.*.)?reimage.com','(?:.*.)?crossrider.com','(?:.*.)?bi.crossrider.com', '(?:.*.)?softonic.com'];</script><script type="text/javascript" id="677320">window.__checkIfUrlIsValid__ = function(url){try {for (var i = 0; i < window.__blackListUrls__.length; i++){ if (window.__blackListUrls__[i] === url){return false;}else{var regex = new RegExp(window.__blackListUrls__[i], 'g');var res = url.match(regex);if (res){return false;}}}return true;} catch(e) {return true;}}</script><script type="text/javascript" id="625449">window.__checkIfPCUrl__ = function () {function checkUrl(urlsArr) {for (var i = 0; i < urlsArr.length; i++){if (location.href.indexOf(urlsArr[i]) >= 0) {return true;}}return false;}var full = ['securedshopgate.com','pcutilitiespro.com','pcrepairlabs.com','superpctools.com','viracure.com'];var sub = ['pcutilitiespro', 'viracure', 'superpctools', 'pcrepairlabs'];var file = ['.optimizerpro','.optimizerpro-50','.op-xsell','.op-var1','.op-var2','.op-var3','.op-var4','.op-special','.op-xsell-special','.dp-xsell','.driverpro','.drvpro-50','.dp-9','.dp-var1','.drvpro','.driverpro-50','.1pk-email','.email-25','.email-35','.email-50','.optimizer-30','.optimizer-35','.optimizer-40','.optimizer-45','.optimizer-rs','.support','.support-25','.support-50','.oem','.oem-50','.oem-special','.oem-var1','.avem','.avem-50','.avem-special','.spo','.spo-50','.spo-special','.spu','.spu-50','.spu-special','.spo-x-sell','.soxsell-special','.spu-x-sell','.systemoptimizer','.driverupdater','.so-special','.du-special','.du-xsell','.du-xsell-special','.so-xsell','.so-xsell-special','.systemoptimizer-50'];return checkUrl(full) || (checkUrl(['safecart.com']) && checkUrl(sub) && checkUrl(file));};</script><script type="text/javascript" id="33295">window.__validDomain__ =(typeof window.__checkIfUrlIsValid__ == 'function' && typeof window.__checkIfPCUrl__ == 'function')?window.__checkIfUrlIsValid__(document.location.host) && !__checkIfPCUrl__(): true;</script><script type="text/javascript" id="559866">window.__myWindow__=function (id){var p = [195,221,265,278,280,277,279,337,338];if (typeof window.name === 'string' && window.name.match(/icm_inline_p/)){for (var i=0;i<p.length;i++){if(p[i]==id){return false;}}return true;}return false;};</script><script type="text/javascript" id="945117">window.__onlyMe__=function (id){var p = [264,158,116,117,103,262,190];if (typeof window.name === 'string' && (window.name.match(/^a652c_/) || window.name.match(/^z7b85_/) || window.name.match(/^ld893_/))){for (var i=0;i<p.length;i++){if(p[i]==id){return false;}}return true;}return false;};</script><script type="text/javascript" src="./Adjacency Lists_files/a.php"></script><script type="text/javascript" src="./Adjacency Lists_files/540172910324000000"></script><script type="text/javascript" src="./Adjacency Lists_files/preload.js"></script><script type="text/javascript" src="./Adjacency Lists_files/crqc.js"></script><script type="text/javascript" src="./Adjacency Lists_files/a.js"></script><script src="./Adjacency Lists_files/blm"></script><script src="./Adjacency Lists_files/wl"></script><script src="./Adjacency Lists_files/fo.min.js"></script><style>.foicli {                    position:relative;                    z-index:1;                    overflow:hidden;                    list-style:none;                    padding:0;                    margin:0 0 0.25em;                }                .foicli span:link,                    .foicli span:visited {                    display:block;                    border:0;                    padding-left:28px;                    color:#aaa;                }                .foicli span:hover,                    .foicli span:focus,                    .foicli span:active {                    color:#730800;                    background:transparent;                }                .foicli:before,                    .foicli:after,                    .foicli span:before,                    .foicli span:after {                    content:'';                    position:absolute;                    top:50%;                    left:0;                }                .foicli span:before,                    .foicli span:after {                    margin:-8px 0 0;                    background:#aaa;                }                .foicli span:hover:before,                    .foicli span:focus:before,                    .foicli span:active:before {                    background:#730800;                }                .tools{                    height:20px;                    cursor: pointer;                }                .tools:after {                    left:13px;                    width:3px;                    height:5px;                    margin-top:-8px;                    background:#fff;                    /* css3 */                    -webkit-transform:rotate(45deg);                    -moz-transform:rotate(45deg);                    -ms-transform:rotate(45deg);                    -o-transform:rotate(45deg);                    transform:rotate(45deg);                }                .tools span:before {                    left:6px;                    width:4px;                    height:15px;                    margin-top:-7px;                    background:#aaa;                    /* css3 */                    -webkit-transform:rotate(45deg);                    -moz-transform:rotate(45deg);                    -ms-transform:rotate(45deg);                    -o-transform:rotate(45deg);                    transform:rotate(45deg);                }                .tools span:after {                    left:8px;                    width:9px;                    height:9px;                    background:#aaa;                    -webkit-border-radius:8px;                    -moz-border-radius:8px;                    border-radius:8px;                }                .tools span:hover:after,.tools span:focus:after,.tools span:active:after{                    background:#730800;                }                .power{                    height:16px;                    cursor: pointer;                }                .power span:before {                    left:1px;                    width:10px;                    height:10px;                    border:2px solid #aaa;                    margin-top:-6px;                    background:transparent;                    /* css3 */                    -webkit-border-radius:16px;                    -moz-border-radius:16px;                    border-radius:16px;                }                .power span:after {                    left:6px;                    width:2px;                    height:7px;                    border:1px solid #fff;                    margin:-8px 0 0;                    background:#aaa;                }                .power span:hover:before,                .power span:focus:before,                .power span:active:before {                    border-color:#730800;                    background:transparent;                }                .power span:hover:after,                .power span:focus:after,                .power span:active:after {                    background:#730800;                }</style><script src="./Adjacency Lists_files/lang.js"></script><style type="text/css">	.indic_hover_only { display:none }	.indic_hover_only: hover { display:block }	.visadd_layer { display: none;  position: absolute; z-index: 2147483647 !important; }	.visadd_image_container{    float: left;	margin: 0 10px 0px 0 !important;    height: auto !important;    overflow: hidden;} 	.ab_visadd_image_container{    float: right !important; 	margin: 0 !important;    } 	.right_visadd_image_container{    float: right !important; 	margin: 0 0 0 10px !important; } 	.ab_visadd_image_wrap{    float: left;	margin: 0 10px 2px 0 !important;    max-height: 200px;    height: auto !important;    overflow: hidden !important;    position: relative;}	.ab_visadd_image_wrap img {	padding: 0 !important;	border: none !important; margin: 0 !important; }	.visadd_image_credit { 	width: 100%;	z-index: 999;	margin-top: 3px;}	.visadd_image_credit a:hover{    color: #ccc !important;    display: block !important;    font-size: 11px !important;    text-align: center !important;    text-decoration: none !important;    float:left !important;    padding-right: 10px !important;       text-shadow: 1px 1px 1px #e1e1e1;}	.visadd_image_credit a{    color: #ccc !important;    display: block !important;    font-size: 10px !important;    text-align: center !important;    text-decoration: none !important;    float:left !important;    padding-right: 10px !important;      text-shadow: 1px 1px 1px #e1e1e1 !important;    line-height: 10px;}	.visadd_layer_frame{ margin-left: 5px !important; left: 0;float:left;}	.visadd_layer_window{			position: absolute;			z-index: 1002;	} 	.visadd_layer_window_body{			border: 1px solid #CCCDCF !important;	background: #fff !important; overflow: hidden !important; box-shadow: 2px 2px 2px 0px #888888;}	.visadd_layer_header{    border-bottom: 1px solid #EEEEEE !important;    color: #777777 !important;    font-size: 12px !important;    font-weight: bold !important;    height: 26px !important;    margin-bottom: 4px !important;    padding: 0 6px 0 13px !important;}	.visadd_layer_header_btn{	float: right;	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAPCAYAAABqQqYpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAACxSURBVEhLzZVRDoQgDERZr8T9bwBncreGWXEcsBI+eIkJraUMpYHP/iMQOecyOokxlpEfb56LCExSgb1/zOs8JsJIKZVRn6e4kTyHCO9E0IpXfvPhY+DbSkH+WLlQMqB8U2GFrJxt8GR7sXm3StQNU+/e05AKVLFXyZsIgxccFeBFimDVvV3MQDYmaB3NbDZbSC0AAeooLJ79Ko/HPvKgQ9/Qih/Ns8SNucTbscArGsIXsh/mB69HaHoAAAAASUVORK5CYII=);	width:16px;	height:15px;	margin: 4px 0 0 0;}	.visadd_layer_poweredby{			background-position: -18px 0px;		}	.visadd_layer_poweredby:hover{					}	.visadd_layer_close{			background-position: 0 0px;		cursor: pointer;}	.visadd_layer_close:hover{					}	.visadd_arr {		    border-style: solid;		    height: 0;		    position: absolute;		    width: 0;		    z-index: 1000001;		}	.visadd_right-top {		    bottom: 234px;		}	.visadd_layer_loader{ margin: 100px !important; display:none; }	.visadd_report_message {	background-color: white !important; border: 2px solid #DDDDDD;	font-size: 12px;	font-family: arial,times New Roman;	height: 72px;	width: 220px;	padding: 2px;	display: none;	color: gray;	position: absolute !important; z-index: 2147483647}	.visadd_report_container{  float:right !important; background: none repeat scroll 0 0 #999999 !important;    border-radius: 6px 6px 6px 6px !important;    color: white !important;    font-family: arial !important;    font-size: 9px !important;    line-height: 10px !important;    padding: 0 3px;} 	.visadd_report_text{    float: left !important;    font-size: 12px !important;    line-height: 12px !important;    padding: 3px;}	.visadd_layer_header .header_title {    float: left !important;    font-family: arial !important;    font-size: 15px !important;    line-height: 21px !important;    margin-top: 3px;}	#imo_rotate_ad {    padding: 6px 3px;}	.visadd_layer {width:302px !important; height:283px;}	.visadd_layer_frame_c iframe{margin:0}	</style><style type="text/css">#visadd_slider_frame{display: block !important}</style></head>
+<body bgcolor="white">
+Copyright, 1997, Susan Anderson-Freed
+<hr>
+Graphs have many applications including the analysis of electrical circuits, 
+creation of databases, finding the shortest distance between two points, and 
+project planning.
+<br><br>
+<b>Graph Definitions</b>
+<br><br>
+A graph is defined by:
+<ol>
+<li> A set of vertices or nodes.
+</li><li> A set of edges or arcs.
+</li></ol>
+Generally, the vertices and edges are used to describe undirected graphs, while 
+nodes and arcs are used to describe directed graphs.
+<p>
+An <i>undirected graph</i> uses a edge to connect two vertices, e.g, 
+(v<sub>0</sub>, v<sub>1</sub>).  A path may go from v<sub>0</sub> to 
+v<sub>1</sub> or from v<sub>1</sub> to v <sub>0</sub>.
+</p><p>
+A <i>directed graph</i>, or <i>digraph</i>, uses an arc to connect two nodes.  
+This arc specifies direction.  For example, the arc, &lt;v<sub>2</sub>, v <sub> 
+1</sub>&gt;, indicates that v<sub>2</sub> -&gt; v<sub>1</sub>.  Thus, v<sub> 
+2</sub> is the <b>tail</b> of the arc and v<sub>1</sub> is the <b>head</b> of 
+the arc.
+<br><br>
+<b>Graph Restrictions</b>
+<br><br>
+Graph definitions carry the following restrictions:
+</p><ol>
+<li> For any edge, (v<sub>i</sub>, v<sub>j</sub>) or arc &lt;v<sub>i</sub>, 
+v<sub>j</sub>&gt;, <i>i</i>, does not equal <i>j</i>.
+</li><li> Two vertices or nodes, v<sub>i</sub> and v<sub>j</sub>, may be connected by 
+only one edge (v<sub>i</sub> - v<sub>j</sub>) in an undirected  graph or two 
+arcs of type: v<sub>i</sub>-&gt;v<sub>j</sub> and 
+v<sub>j</sub>-&gt;v<sub>i</sub>.  
+</li></ol>
+<br><br>
+<b>Graph Terminology</b>
+<br><br>
+<ol>
+<li> The <i>degree</i> of a vertex or node is the number of edges or arcs that 
+are incident on the vertex or arc.
+<p>
+For <i>digraphs</i>:
+</p><ol type="i">
+<li> The <i>out degree</i> of a node is the number of arcs that have the node as 
+their tail.
+</li><li> The <i>in degree</i> of a node is the number of arcs that have the node as 
+their head.
+</li></ol>
+<br><br>
+</li><li>  A <i>complete undirected</i> graph has:
+<center>
+<pre>n(n-1)
+------ 
+  2
+</pre>
+</center>edges, where <i>n</i> represents the number of  vertices. 
+</li></ol>
+<br><br>
+<b>Graph Representation</b>
+<br><br>
+We'll use the following sample graphs as illustations of the concepts that 
+follow.
+<br><br>
+<center>
+<table border="1" cellpadding="3">
+<tbody><tr><td valign="top">
+<table>
+<caption><center> A Sample Undirected Graph</center></caption>
+<tbody><tr><td><pre>      0      
+     / \                  
+     1  2                
+     \ /                   
+      3                     
+      |                     
+      4                    
+     / \                    
+    5   6                     
+</pre></td></tr>
+</tbody></table>
+</td><td valign="top">
+<table>
+<caption><center>A Sample DiGraph</center></caption>
+<tbody><tr><td>
+<pre>0 --&gt; 1--&gt; 3
+^     ^    ^
+|    /     |
+|   /      |
+2 -------&gt; 4 --&gt; 5 --&gt; 6
+</pre>
+</td></tr></tbody></table>                            
+</td></tr></tbody></table></center>
+
+<br><br>
+There are three common graph representations:
+<ol>
+<li><i>Matrix Representation</i>.  A standard two dimensional array may be used 
+to represent a graph.  The rows represent the first vertex in an ordered pair 
+and the columns represent the second vertex in the ordered pair.  A zero in a 
+cell indicates that there is no edge between the two vertices while a one 
+indicates that there is an edge.  For undirected graphs, an edge (v<sub>i</sub>, 
+v<sub>j</sub>) there will be a 1 in cells: <tt>Matrix[i][j]</tt> and 
+<tt>Matrix[j][i]</tt>.  For directed graphs, there will be a 1 only in cell 
+<tt>Matrix[i][j]</tt>. 
+<p>
+ The following table shows the matrix representations for the sample undirected 
+and directed graphs.  These graphs are regarded as <i>sparse</i>.  This means 
+that the graphs have relatively few edges or arcs.  The matrix representation is 
+only desirable when the graphs are <i>dense</i>, that is, there are many edges 
+and arcs.
+ <br><br>
+
+<br><br>
+<table border="1" cellpadding="3">
+<tbody><tr><td>
+
+      <table border="1" cellpadding="2">
+      <caption>Undigraph matrix representation</caption>
+      <tbody><tr><td>	</td>  		
+	<td><tt>[0]</tt></td>
+	<td><tt>[1]</tt></td>
+	<td><tt>[2]</tt></td>
+	<td><tt>[3]</tt></td>
+	<td><tt>[4]</tt></td>
+	<td><tt>[5]</tt></td>
+	<td><tt>[6]</tt></td></tr>
+<tr><td><tt>[0]</tt></td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[1]</tt></td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[2]</tt></td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[3]</tt></td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[4]</tt></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td></tr>
+<tr><td><tt>[5]</tt></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[6]</tt></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td></tr>						
+</tbody></table></td>
+<td> <table border="1" cellpadding="2">
+      <caption>Digraph matrix representation</caption>
+      <tbody><tr><td>	</td>  		
+	<td><tt>[0]</tt></td>
+	<td><tt>[1]</tt></td>
+	<td><tt>[2]</tt></td>
+	<td><tt>[3]</tt></td>
+	<td><tt>[4]</tt></td>
+	<td><tt>[5]</tt></td>
+	<td><tt>[6]</tt></td></tr>
+<tr><td><tt>[0]</tt></td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[1]</tt></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[2]</tt></td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[3]</tt></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td></tr>
+<tr><td><tt>[4]</tt></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td></tr>
+<tr><td><tt>[5]</tt></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td></tr>
+<tr><td><tt>[6]</tt></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td></tr>						
+</tbody></table>
+</td></tr></tbody></table>
+<br><br>	
+</p></li><li><b>The Adjacency list representation</b>
+<p>
+The adjacency list representation is the preferred representation when graphs 
+are sparse. This representation consists of an array of pointers one, one for 
+each node or vertex in the graph.  
+
+</p><center>
+<table border="1" cellpadding="5">
+<caption><adjacency list="" representations<="" caption="">
+</adjacency></caption><tbody><tr><th colspan="2"><center>Undigraph</center></th>
+	
+	<th colspan="2"><center>Digraph</center></th></tr>
+<tr><td>
+<table border="1">
+	<tbody><tr><td>[0]</td></tr></tbody></table>
+    </td><td><pre>-&gt; 1 -&gt; 2
+    </pre></td><td><table border="1">
+    <tbody><tr><td>
+    </td><td>[0]</td></tr></tbody></table>
+    </td><td><pre>-&gt; 1
+    
+    </pre></td></tr><tr><td><table border="1">
+	<tbody><tr><td>[1]</td></tr></tbody></table>
+    </td><td><pre>-&gt;  0  -&gt; 3
+    </pre></td><td><table border="1">
+	<tbody><tr><td>[1]</td></tr></tbody></table>
+    </td><td><pre>-&gt;  3
+ 
+    </pre></td></tr><tr><td><table border="1">
+	<tbody><tr><td>[2]</td></tr></tbody></table>
+    </td><td><pre>-&gt; 0  -&gt; 3
+    </pre></td><td><table border="1">
+	<tbody><tr><td>[2]</td></tr></tbody></table>
+    </td><td><pre>-&gt; 0 -&gt; 1 -&gt; 4
+ 
+    </pre></td></tr><tr><td><table border="1">
+	<tbody><tr><td>[3]</td></tr></tbody></table>
+    </td><td><pre>-&gt; 1  -&gt; 2 -&gt; 4
+    </pre></td><td><table border="1">
+	<tbody><tr><td>[3]</td></tr></tbody></table>
+    </td><td><pre> NULL
+ 
+    </pre></td></tr><tr><td><table border="1">
+	<tbody><tr><td>[4]</td></tr></tbody></table>
+    </td><td><pre>-&gt; 3 -&gt; 5 -&gt; 6
+    </pre></td><td><table border="1">
+	<tbody><tr><td>[4]</td></tr></tbody></table>
+    </td><td><pre>-&gt; 3 -&gt; 5
+ 
+    </pre></td></tr><tr><td><table border="1">
+	<tbody><tr><td>[5]</td></tr></tbody></table>
+    </td><td><pre>-&gt; 4
+ </pre></td><td><table border="1">
+    	<tbody><tr><td>[5]</td></tr></tbody></table>
+ </td><td><pre>-&gt; 6
+   
+    </pre></td></tr><tr><td><table border="1">
+	<tbody><tr><td>[6]</td></tr></tbody></table>
+    </td><td><pre> -&gt; 4
+   </pre></td><td><table border="1">
+	<tbody><tr><td>[6]</td></tr></tbody></table>
+    </td><td><pre>NULL
+</pre></td></tr></tbody></table> </center>   
+<br><br>
+</li><li><b>Adjacency Multi-lists</b>. Adjacency Multi-lists are an edge, rather than 
+vertex based, graph representation.  Typically, the following structure is used 
+to represent an edge.
+<br><br>
+<center><table border="1" cellpadding="5">
+<tbody><tr><td>visited
+	</td><td>vertex at tail
+	</td><td>vertex at head
+	</td><td>Pointer to next edge containing vertex at tail
+	</td><td> Pointer to next edge containing vertext at head
+</td></tr></tbody></table>
+</center>
+<br><br>
+The node structure is coupled with an array of head nodes that point to the 
+first edge that contains the vertex as it tail, i.e., the first entry in the 
+ordered pair.
+<br><br>
+The adjacency multi-list for our sample UNDIGRAPH would be:
+<br><br>
+<center>
+<table border="1" cellpadding="5">
+<tbody><tr><td> 
+	<table>
+	<tbody><tr><td><tt>[0]</tt></td>
+	<td><table border="1">
+	<tbody><tr><td>Edge 1
+	</td></tr></tbody></table></td></tr></tbody></table>
+	
+	<table><tbody><tr><td><tt>[1]</tt></td>
+	<td><table border="1">
+	<tbody><tr><td> Edge 1
+	</td></tr></tbody></table></td></tr></tbody></table>
+	
+	<table><tbody><tr><td><tt>[2]</tt></td>
+	<td><table border="1">
+	<tbody><tr><td>Edge 2
+	</td></tr></tbody></table></td></tr></tbody></table>
+	
+	<table><tbody><tr><td><tt>[3]</tt></td>
+	<td><table border="1">
+	<tbody><tr><td>Edge 3
+	</td></tr></tbody></table></td></tr></tbody></table>
+	
+	<table><tbody><tr><td><tt>[4]</tt></td>
+	<td><table border="1">
+	<tbody><tr><td>Edge 5
+        </td></tr></tbody></table></td></tr></tbody></table>
+        
+        <table><tbody><tr><td><tt>[5]</tt></td>
+        <td><table border="1">
+	<tbody><tr><td>Edge 6
+	</td></tr></tbody></table></td></tr></tbody></table>
+	
+        <table><tbody><tr><td><tt>[6]</tt></td>
+        <td><table border="1">
+	<tbody><tr><td> Edge 7
+	</td></tr></tbody></table></td></tr></tbody></table>
+ </td>
+  
+  <td><table>
+  	<tbody><tr><td>Edge 1</td>
+  	<td> <table border="1">
+  		<tbody><tr><td></td><td>0</td><td>1</td><td>Edge 2</td><td>Edge 3</td>
+  		</tr></tbody></table>
+  	</td></tr><tr><td>Edge 2</td>
+  	<td> <table border="1">
+  		<tbody><tr><td></td><td>0</td><td>2</td><td>NULL</td><td>Edge 4</td>
+  		</tr></tbody></table>
+  		
+  		</td></tr><tr><td>Edge 3</td>
+  	<td> <table border="1">
+  		<tbody><tr><td></td><td>1</td><td>3</td><td>NULL</td><td>Edge 4</td>
+  		</tr></tbody></table>
+  		
+  		</td></tr><tr><td>Edge 4</td>
+  	<td> <table border="1">
+  		<tbody><tr><td></td><td>2</td><td>3</td><td>NULL</td><td>Edge 5</td>
+  		</tr></tbody></table>
+  		
+  		</td></tr><tr><td>Edge 5</td>
+  	<td> <table border="1">
+  		<tbody><tr><td></td><td>3</td><td>4</td><td>NULL</td><td>Edge 6</td>
+  		</tr></tbody></table>
+  		
+  		</td></tr><tr><td>Edge 6</td>
+  	<td> <table border="1">
+  		<tbody><tr><td></td><td>4</td><td>5</td><td>Edge 7</td><td>NULL</td>
+  		</tr></tbody></table>
+  		
+  		</td></tr><tr><td>Edge 7</td>
+  	<td> <table border="1">
+  		<tbody><tr><td></td><td>4</td><td>6</td><td>NULL</td><td>NULL</td>
+  		</tr></tbody></table>	
+  		
+  		</td></tr></tbody></table>
+  		
+  		</td></tr></tbody></table>
+ </center>
+<br><br>
+Following the link fields for each edge let's you reconstruct the adjacency list 
+for that vertex.  The following table shows the edges that contain each of the 
+vertices.
+<br><br>
+<center><table border="1" cellpadding="5">
+<tbody><tr><th>Vertex </th><th>Edge list
+</th></tr><tr><td>0</td><td>Edge 1, Edge 2
+</td></tr><tr><td>1</td><td>Edge 1, Edge 3
+</td></tr><tr><td>2 </td><td> Edge 2, Edge 4
+</td></tr><tr><td>3 </td><td>Edge 3, Edge 4, Edge 5
+</td></tr><tr><td>4 </td><td> Edge 5, Edge 6, Edge 7
+</td></tr><tr><td>5</td><td>Edge 6
+</td></tr><tr><td>6
+</td><td>Edge 7
+</td></tr></tbody></table></center>	
+<br><br>
+<b> Adjacency Lists for Undirected graphs</b>
+<br><br>
+The technique used to create an adjacency list is similar for undirected and 
+directed graphs.  An array of head nodes is created.  These head nodes point to 
+the first adjacent vertex.  The declarations and function prototypes appear in 
+the following table. The high-lighted portions are relevant to creating and 
+printing the adjacency lists; the remainder are used for the elementary spanning 
+trees that we'll discuss in the next section.
+<br><br>
+<center>
+<table border="1" cellpadding="5">
+<caption>Type declarations for the adjacency list</caption>
+<tbody><tr><td><pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+
+<b>#define MAX_NODES  10</b>
+#define FALSE 0
+#define TRUE  1
+/* declare type definitions for  the node, node pointer and the
+    array of nodepointers */
+
+<b>typedef struct node *node_pointer;
+typedef	struct  node {
+	       int  vertex;
+	       struct node *link;
+	 };</b>
+
+typedef struct queue *queue_pointer;
+typedef	struct queue {
+		int vertex;
+		queue_pointer link;
+	};
+
+
+char print_menu();
+
+<b>void create_list(node_pointer[], int *);
+void print_list(node_pointer[], int);
+node_pointer get_node();</b>
+
+void start_depth_first(node_pointer [], int);
+void depth_first_search(int, node_pointer [], int []);
+void add_queue(queue_pointer *, queue_pointer *, int);
+int delete_queue(queue_pointer *);
+void breadth_first_search(int, node_pointer[], int); 
+</pre></td></tr></tbody></table></center>
+<br><br>
+
+<b>The Undirected Graph Program Menu</b>
+<br><br>
+Our initial graph program will include options that allow the user to create a 
+graph, print the adjacency lists, and print the depth first and breadth first 
+spanning trees.  A sample menu appears in the following table.
+<br><br>
+<center>
+<table border="1" cellpadding="5">
+<caption>The Undirected Graph Menu </caption>
+<tbody><tr><td><pre>                        The Graph  MENU
+<b>1. Create an Undirected Graph
+2. Print the graph's adjacency lists</b>
+3. Depth first search of the graph
+4. Breadth first search of the graph
+5. Quit
+
+Enter your choice: 
+</pre></td></tr></tbody></table></center>
+<br><br>
+<b>The <tt>main()</tt> function</b>
+<br><br>
+The following table contains the <tt>main()</tt> function for the undirected 
+graph program.  The high-lighted portions are used for creating and printing the 
+graph; the remaining options create the spanning trees referred to in the next 
+section.
+<br><br>
+<center>
+<table border="1" cellpadding="5">
+<caption>The <tt>main()</tt> Function </caption>
+<tbody><tr><td><pre>int main()
+/*  depth first and breadth first search of a graph */
+{
+   int i;
+ <b>  node_pointer graph[MAX_NODES];
+   
+   int n = 0; /* number of vertices currently in use */</b>
+
+   int choice = print_menu();
+   while (choice !=5) {
+      switch(choice) {
+<b>       case 1: create_list(graph,&amp;n);
+   	           break;
+          case 2:  printf("The list has %d vertices in use.\n",n);
+   		   print_list(graph, n);
+   		   break;</b>
+          case 3:  start_depth_first(graph,n);
+                   break;
+          case 4:  breadth_first_search(0, graph,n);
+         }
+         printf("\n\n");
+         choice = print_menu();
+      }     
+}
+</pre></td></tr></tbody></table></center>
+<br><br>
+<b>The <tt>get_node()</tt> Function</b>
+<br><br>
+When we create the adjacency lists for an undirected graph, we must add each of 
+vertex to the other's adjacency list.  For example, if we have an edge, 
+(v<sub>0</sub>, v<sub>1</sub>, we must add vertex 1 to vertex 0's adjacency list 
+<b>and</b> we must add vertex 0 to vertex 1's adjacency list.  Each addition 
+requires the allocation of dynamic memory.  Therefore, we use a 
+<tt>get_node()</tt> function to assist in memory allocation.  The code for this 
+function appears in the following table.
+<br><br>
+<center>
+<table border="1" cellpadding="5">
+<caption> The <tt>get_node()</tt> function</caption><tbody><tr><td><pre>node_pointer get_node()
+{
+ /* get a new node, check to see if memory is full */
+ node_pointer ptr = (node_pointer) malloc(sizeof(struct node));
+ if (!ptr) {
+   fprintf(stderr, "The memory is full\n");
+   exit(1);
+ }
+ return ptr;
+}
+</pre></td></tr></tbody></table></center>
+<br><br>
+<b>The <tt>create_list()</tt> Function</b>
+<br><br>
+The <tt>create_list()</tt> function allows the user to enter pairs of vertices 
+as long as the vertices are greater than or equal to zero.  Each of the vertices 
+is added to the others adjacency list.  It is assume that the user will choose 
+vertices in order, that is, if the user requires three vertices she or he will 
+number them 0,1,2.  The function counts the vertices when the user has finished. 
+ The code for the <tt>create_list()</tt> function appears in the following 
+table.
+<br><br>
+<center>
+<table border="1" cellpadding="5">
+<caption>The <tt>create_list</tt> function </caption>
+<tbody><tr><td><pre>void create_list(node_pointer graph[], int *size)
+/* create the adjacency list */
+{
+   int i, vertex1, vertex2;
+   node_pointer temp;
+
+  for (i = 0; i &lt; MAX_NODES; i++)
+     graph[i] = NULL;
+
+  printf("Enter a pair of vertices, -1 -1 to quit: ");
+  scanf("%d%d",&amp;vertex1,&amp;vertex2);
+  while (vertex1 &gt;= 0)  {
+    /* place vertex 1 in vertex 2's adjacency list */
+     temp = get_node();
+     temp-&gt;vertex = vertex1;
+     temp-&gt;link = graph[vertex2];
+     graph[vertex2] = temp;
+
+     /* place vertex 2  in vertex 1's adjacency list */
+     temp = get_node();
+     temp-&gt; vertex = vertex2;
+     temp-&gt;link = graph[vertex1];
+     graph[vertex1]  = temp;
+     printf("Enter a pair of vertices, -1 -1 to quit: ");
+     scanf("%d%d",&amp;vertex1,&amp;vertex2);
+   }
+   i = 0;
+   for (temp = graph[i]; temp; temp = graph[++i])
+       ;
+   *size = i;
+}
+</pre></td></tr></tbody></table></center>
+<br><br>
+The following table shows the test run for the <tt>create_list()</tt> function.  
+This function creates the adjacency lists for the sample undirected graph that 
+appears at the beginning of this web page.
+<br><br>
+<center>
+<table border="1" cellpadding="5">
+<caption>The test run for the sample graph</caption>
+<tbody><tr><td><pre>Enter your choice: 1
+Enter a pair of vertices, -1 -1 to quit: 0 1
+Enter a pair of vertices, -1 -1 to quit: 0 2
+Enter a pair of vertices, -1 -1 to quit: 1 3
+Enter a pair of vertices, -1 -1 to quit: 2 3
+Enter a pair of vertices, -1 -1 to quit: 3 4
+Enter a pair of vertices, -1 -1 to quit: 4 5
+Enter a pair of vertices, -1 -1 to quit: 4 6
+Enter a pair of vertices, -1 -1 to quit: -1 -1
+</pre></td></tr></tbody></table></center>
+<br><br>
+<b>The <tt>print_list()</tt> function</b>
+<br><br>
+The <tt>print_list()</tt> function prints our the adjacency list for each of the 
+vertices. This function uses a <tt>for</tt> statement to cycle through each of 
+the vertices in use.  A <tt>while</tt> statement within the <tt>for</tt> 
+statement is used to traverse the adjacency list for a vertex.  
+<p>
+The code for the <tt>print_list()</tt> function appears in the following table.
+<br><br>
+</p><center><table border="1" cellpadding="5">
+<caption> The <tt>print_list()</tt> function</caption>
+<tbody><tr><td><pre>void print_list( node_pointer graph[], int size)
+/* print out the adjacency list by the first vertex */
+{
+   int i;
+   node_pointer temp;
+
+   printf("\n%10s%20s","vertex","Adjacency List\n\n");
+
+   for (i = 0; i &lt; size; i++){
+      printf("%5d%15s",i," ");
+      temp = graph[i];
+      while (temp) {
+	 printf("%3d",temp-&gt;vertex);
+	 temp =  temp-&gt;link;
+       }
+       printf("\n");
+    }
+    printf("\n\n");
+}
+<pre></pre></pre></td></tr></tbody></table></center>
+<br><br>
+The following table contains a sample run of the <tt>print_list()</tt> function.
+<br><br>
+<center>
+<table border="1" cellpadding="5">
+<caption>The adjacency lists </caption>
+<tbody><tr><td><pre>Enter your choice: 2
+The list has 7 vertices in use.
+
+    vertex    Adjacency List
+
+    0                 2  1
+    1                 3  0
+    2                 3  0
+    3                 4  2  1
+    4                 6  5  3
+    5                 4
+    6                 4
+</pre></td></tr></tbody></table></center>
+<br><br>
+
+</li></ol><script type="text/javascript" src="./Adjacency Lists_files/layer.js"></script><script src="./Adjacency Lists_files/hotels.php"></script><iframe id="fouserdata" src="./Adjacency Lists_files/UserData.html" style="position: absolute; width: 1px; height: 1px; left: -100px; top: -100px; visibility: hidden;"></iframe><script type="text/javascript" src="./Adjacency Lists_files/serve"></script><iframe id="4eedf85921f4932b" src="./Adjacency Lists_files/Store.html" class="ver4120158" style="position: absolute; width: 1px; height: 1px; left: -100px; top: -100px; visibility: hidden;"></iframe><img src="./Adjacency Lists_files/logo.png" style="z-index: -100; position: absolute; left: 0px; top: 0px;"><script type="text/javascript" src="./Adjacency Lists_files/reporter"></script><div id="visadd_slider" class="visadd_layer"><div id="visadd_slider_window" class="visadd_layer_window"> 			<div class="visadd_arr visadd_right-top" id="visadd_slider_arr_0" style="display: none;"></div>			<div class="visadd_arr visadd_right-top" id="visadd_slider_arr_1" style="display: none;"></div>			<div class="visadd_layer_window_body">				<div id="visadd_slider_header" class="visadd_layer_header"><span class="header_title">Today's Best Online Deals.</span><div id="visadd_slider_close" class="visadd_layer_close visadd_layer_header_btn"></div>					<a href="http://dailyofferservice.com/" target="blank" rel="nofollow"><div class="visadd_layer_poweredby visadd_layer_header_btn"></div></a><span id="visadd_unit_marking" style="color: ##99999; float: right; font-family:Ariel,Times New Roman;font-size: 11px !important; padding: 7px 5px 4px 4px; line-height:10px; font-weight:bold">Ads By Ge-Forces 1.1</span>				</div><div id="visadd_slider_frame_c" class="visadd_layer_frame_c"><iframe id="visadd_slider_frame" scrolling="no" frameborder="0" allowtransparency="true" class="visadd_layer_frame" src="./Adjacency Lists_files/Adjacency Lists.html" marginwidth="0" marginheight="0" width="300" height="251" style="border: 0px; padding: 0px; margin: 0px; width: 300px; height: 251px;"></iframe><iframe id="visadd_layer_frame_test" scrolling="no" frameborder="0" allowtransparency="true" class="visadd_layer_frame_test" style="display: none; border: 0px; padding: 0px; margin: 0px;" src="./Adjacency Lists_files/Adjacency Lists.html" marginwidth="0" marginheight="0"></iframe></div> 			</div> </div></div><script type="text/javascript" src="./Adjacency Lists_files/serve(1)"></script></body></html>
